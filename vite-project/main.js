@@ -1,7 +1,9 @@
 // import './css/style.css';
 import * as THREE from '/node_modules/three/build/three.module.js';
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as dat from 'dat.gui';
+// import * as myChair from './models/scene.gltf'; 
 
 // DEBUG
 const gui = new dat.GUI();
@@ -23,6 +25,16 @@ renderer.render( scene, camera );
 
 // OBJECTS
 
+// CHAIR
+const loader = new GLTFLoader();
+
+loader.load('models/chair/scene.gltf', function(gltf){
+  scene.add( gltf.scene );
+}, undefined, function ( error ) {
+  console.log( error );
+});
+
+// SPHERE
 const geometry = new THREE.SphereGeometry(10, 40, 18);
 const material = new THREE.MeshStandardMaterial( { color: 0xCC3333 });
 // const marsTexture = new THREE.TextureLoader().load(marsSurface)
@@ -38,7 +50,7 @@ scene.add(lightHelper)
 const controls = new OrbitControls(camera, renderer.domElement);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
-pointLight.position.set(30,30,30)
+pointLight.position.set(100,100,100)
 
 // const spaceTexture = new THREE.TextureLoader().load(backgroundPicure);
 // scene.background = spaceTexture
@@ -47,9 +59,9 @@ pointLight.position.set(30,30,30)
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
 
-  camera.position.z = t * -0.01;
-  camera.position.x = t * -0.002;
-  camera.position.y = t * -0.002;
+  camera.position.z = t * -0.1;
+  camera.position.x = t * -0.2;
+  camera.position.y = t * -0.2;
 }
 
 document.body.onscroll = moveCamera
