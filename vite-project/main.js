@@ -44,6 +44,15 @@ pointLight.position.set(30,30,30)
 // scene.background = spaceTexture
 
 
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.002;
+  camera.position.y = t * -0.002;
+}
+
+document.body.onscroll = moveCamera
 
 //animations
 function animate() 

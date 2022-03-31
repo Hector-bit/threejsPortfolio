@@ -6,6 +6,10 @@
   z-index: 1;
 }
 
+div {
+  grid-column: 1/4;
+}
+
 canvas {
   position: fixed;
   top: 0;
