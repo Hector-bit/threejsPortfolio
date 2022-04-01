@@ -28,19 +28,19 @@ renderer.render( scene, camera );
 // CHAIR
 const loader = new GLTFLoader();
 
-loader.load('models/chair/scene.gltf', function(gltf){
+loader.load('models/blankChair.gltf', function(gltf){
   scene.add( gltf.scene );
 }, undefined, function ( error ) {
   console.log( error );
 });
 
 // SPHERE
-const geometry = new THREE.SphereGeometry(10, 40, 18);
-const material = new THREE.MeshStandardMaterial( { color: 0xCC3333 });
+// const geometry = new THREE.SphereGeometry(10, 40, 18);
+// const material = new THREE.MeshStandardMaterial( { color: 0xCC3333 });
 // const marsTexture = new THREE.TextureLoader().load(marsSurface)
-const someObject = new THREE.Mesh(geometry, material);
+// const someObject = new THREE.Mesh(geometry, material);
 // mars.position.x = -10
-scene.add(someObject)
+// scene.add(someObject)
 
 //scene and lights
 const pointLight = new THREE.PointLight(0xffffff)
@@ -71,9 +71,9 @@ function animate()
 {
   requestAnimationFrame( animate )
 
-  someObject.rotation.x += 0.001;
-  someObject.rotation.y += 0.005;
-  someObject.rotation.z += 0.001;
+  // someObject.rotation.x += 0.001;
+  // someObject.rotation.y += 0.005;
+  // someObject.rotation.z += 0.001;
 
   controls.update()
 
