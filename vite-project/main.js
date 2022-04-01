@@ -28,11 +28,12 @@ renderer.render( scene, camera );
 // CHAIR
 const loader = new GLTFLoader();
 
-loader.load('models/blankChair.gltf', function(gltf){
+loader.load('models/room.gltf', function(gltf){
   scene.add( gltf.scene );
 }, undefined, function ( error ) {
   console.log( error );
 });
+
 
 // SPHERE
 // const geometry = new THREE.SphereGeometry(10, 40, 18);
