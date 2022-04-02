@@ -4,15 +4,59 @@
   color: white;
   position: absolute;
   z-index: 1;
+  border: 2px dotted white;
 }
 
-div {
-  margin-bottom: 200px;
+body {
+  border: 2px dotted green;
+}
+
+/* div {
+  display: block;
+} */
+
+section {
+  padding: 100px;
+}
+
+.section-title {
   border: 2px solid red;
+  margin: 25% 0 30% 0;
+  padding: 10%; 
+}
+
+.title {
+
+}
+
+.section-previous-works {
+  border: 2px solid yellow;
+  margin: 30% 0 30% 0;
+}
+
+.previous-works {
+
+}
+
+.section-bio {
+  border: 2px solid green;
+  margin: 30% 0 30% 0;
+}
+
+.bio {
+
 }
 
 canvas {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+#scrollProgress {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 99;
+  font-size: 3vh;
 }
