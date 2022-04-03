@@ -61,48 +61,45 @@ pointLight.position.set(30,30,10)
 
 //lerp stands for linear interpolation
 function lerp(x, y, a){
-  return (1-a) * x + a*y;
+  return (1-a) * x + a * y
 }
 
-function scrollPercent(start, end){
+function scalePercent(start, end){
   return (scrollPercent - start) / (end -start);
 }
 
 var animationScripts = [];
 
+const mat = new THREE.MeshStandardMaterial({color: 'red'});
+const geo = new THREE.BoxGeometry(1,1,1);
+const target = new THREE.Mesh(geo, mat);
+target.position.x = -1;
+target.position.y = 16.75;
+target.position.z = 2.25;
+camera.position.set(0, 16.75, 2.25)
+scene.add(target);
+
 animationScripts.push({
   start: 0,
   end: 101,
-  func: function(){
-    var g = material.color.g;
-    g -= 0.05;
-    if (g <=0){
-      g = 1.0;
-    } material.color.g = g
+  func: function (){
+      camera.position.x = lerp(1, 30, scalePercent(0, 101))
+      camera.lookAt(target.position)
   },
 })
 
-function playScrollAnimations() {
-  animationScripts.forEach((a) => {
-    if (scrollPercent >= a.start && scrollPercent < a.end){
-      a.func();
-    }
-  })
-}
 
-let scroll_Percent = 0;
 
 document.body.onscroll = function () {
   //calculate the current scroll progress as a percentage
-  scroll_Percent =
+  scrollPercent =
       ((document.documentElement.scrollTop || document.body.scrollTop) /
           ((document.documentElement.scrollHeight ||
               document.body.scrollHeight) -
               document.documentElement.clientHeight)) *
           100;
   document.getElementById('scrollProgress').innerText =
-      'Scroll Progress : ' + scroll_Percent.toFixed(2);
-      console.log('SCROLL PROGRESS ', scroll_Percent)
+      'Scroll Progress : ' + scrollPercent.toFixed(2);
 };
 
 
@@ -115,22 +112,15 @@ const bezier = new THREE.CubicBezierCurve3(
 );
 
 
-const mat = new THREE.MeshStandardMaterial({color: 'red'});
-const geo = new THREE.BoxGeometry(1,1,1);
-const target = new THREE.Mesh(geo, mat);
 
-
-console.log(target.position);
-
-
-scene.add(target);
-
-// scroll_pos = document.ge
-
-  
-
-  //update camera
-
+function playScrollAnimations() {
+  animationScripts.forEach((a) => {
+    if (scrollPercent >= a.start && scrollPercent < a.end){
+      a.func();
+    }
+  })
+}
+let scrollPercent = 0;
 //animations
 function animate() 
 {
@@ -155,7 +145,7 @@ function animate()
   // camera.position.z = settings.blockZ;
   // const play_pos = bezier.getPoint(playhead);
   // camera.position.set(play_pos.x, play_pos.y, play_pos.z);
-
+  console.log(target.position.z)
   renderer.render( scene, camera );
 }
 
