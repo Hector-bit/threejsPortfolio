@@ -149,5 +149,7 @@ function animate()
   renderer.render( scene, camera );
 }
 
+
+window.scrollTo({ top: 0, behavior: 'smooth' })
 animate()
 
