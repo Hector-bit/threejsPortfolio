@@ -3,10 +3,11 @@ import * as THREE from 'three';
 import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as dat from 'dat.gui';
-// import * as myChair from './models/scene.gltf'; 
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
+
 import { RectAreaLightUniformsLib } from './extra/RectAreaLightUniformLib';
-import { seededRandom } from 'three/src/math/MathUtils';
-import { RectAreaLight } from 'three';
+
+
 
 RectAreaLightUniformsLib.init();
 
@@ -31,7 +32,7 @@ var settings = {
   pinkBright: 1
 }
 
-gui.add(settings, "playhead", 0.001, 1, 0.001)
+gui.add(settings, "playhead", 0.001, 1, 0.001);
 gui.add(settings, "blockX", -80, 80, 1)
 gui.add(settings, "blockY", -80, 80, 1)
 gui.add(settings, "blockZ", -80, 80, 1)
@@ -87,6 +88,18 @@ var windowLight = new THREE.RectAreaLight( 0xffffff, settings.windowBright, 25, 
 var greenRectLight = new THREE.RectAreaLight( 0x00FF00, settings.greenBright, 35, 35);
 var pinkRectLight = new THREE.RectAreaLight( 0xFFC0CB, settings.pinkBright, 30, 30);
 
+
+const width = 10;
+const height = 10;
+const intensity = 1;
+const testRect = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
+testRect.position.set( 5, 15, 0 );
+testRect.lookAt( 0, 0, 0 );
+scene.add( testRect )
+
+const testRectHelper = new RectAreaLightHelper( testRect );
+testRect.add( testRectHelper );
+
 // LIGHT HELPERS
 // const helper_windowLight = new RectAreaLightHelper( windowLight );
 // windowLight.add( helper_windowLight );
@@ -106,8 +119,8 @@ const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement);
-// const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, );
+const ambientLight = new THREE.AmbientLight(0xffffff, 10);
+scene.add(pointLight, ambientLight);
 pointLight.position.set(25,25,10)
 
 
