@@ -21,11 +21,11 @@ var settings = {
   greenx: 24,
   greeny: 26,
   greenz: 24,
-  targetx: 10,
-  targety: 18,
-  targetz: 2.5,
-  windowx: 10,
-  windowy: 10,
+  targetx: 14,
+  targety: 21,
+  targetz: 28,
+  windowx: 14,
+  windowy: 21,
   windowz: -28,
   windowBright: 1,
   greenBright: 1,
@@ -84,44 +84,37 @@ scene.add(target, rectLightTarget);
 
 // SCENE AND LIGHTS
 var rectLight = new THREE.RectAreaLight( 0xffffff, 2,  5, 5 );
-var windowLight = new THREE.RectAreaLight( 0xffffff, settings.windowBright, 25, 25);
+var windowLight = new THREE.RectAreaLight( 0xffffff, settings.windowBright, 35, 25);
 var greenRectLight = new THREE.RectAreaLight( 0x00FF00, settings.greenBright, 35, 35);
 var pinkRectLight = new THREE.RectAreaLight( 0xFFC0CB, settings.pinkBright, 30, 30);
 
-
-const width = 10;
-const height = 10;
-const intensity = 1;
-const testRect = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-testRect.position.set( 5, 15, 0 );
-testRect.lookAt( 0, 0, 0 );
-scene.add( testRect )
-
-const testRectHelper = new RectAreaLightHelper( testRect );
-testRect.add( testRectHelper );
+const windowHelper = new RectAreaLightHelper( windowLight );
+const pinkHelper = new RectAreaLightHelper( pinkRectLight );
+const greenHelper = new RectAreaLightHelper( greenRectLight);
+pinkRectLight.add( pinkHelper );
+greenRectLight.add ( greenHelper)
+windowLight.add( windowHelper );
 
 // LIGHT HELPERS
 // const helper_windowLight = new RectAreaLightHelper( windowLight );
 // windowLight.add( helper_windowLight );
-const plane = new THREE.Plane( new THREE.Vector3( 10, 10, 20 ), 0 );
-const helper = new THREE.PlaneHelper( plane, 10, 0xffff00 );
-scene.add( helper );
 
 rectLight.position.set( -1, 16.75, 2.25);
 rectLight.lookAt( 30, 16.75, 2.25 );
-windowLight.lookAt( 15, 15, 450 );
+windowLight.lookAt( 14, 21, 2899 );
 
 scene.add( rectLight, pinkRectLight, greenRectLight, windowLight );
 
 
-const pointLight = new THREE.PointLight(0x2c3f47, 1)
-const lightHelper = new THREE.PointLightHelper(pointLight)
-scene.add(lightHelper)
+// const pointLight = new THREE.PointLight(0x2c3f47, 1)
+// const lightHelper = new THREE.PointLightHelper(pointLight)
+// scene.add(lightHelper)
+// pointLight.position.set(25,25,10)
 
 const controls = new OrbitControls(camera, renderer.domElement);
-const ambientLight = new THREE.AmbientLight(0xffffff, 10);
-scene.add(pointLight, ambientLight);
-pointLight.position.set(25,25,10)
+const ambientLight = new THREE.AmbientLight(0x404040, 1000);
+scene.add(ambientLight);
+
 
 
 //FAKE SCROLL / SCROLL PERCENT
@@ -203,7 +196,7 @@ function animate()
   pinkRectLight.intensity = settings.pinkBright; 
   greenRectLight.intensity = settings.greenBright;
   windowLight.intensity = settings.windowBright;
-  // windowLight.position.set(-1,  16.75, -35);
+  // windowLight.lookAt(rectLightTarget.position)
 
   renderer.render( scene, camera );
 }
