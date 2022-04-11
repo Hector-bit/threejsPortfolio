@@ -15,15 +15,15 @@ RectAreaLightUniformsLib.init();
 const gui = new dat.GUI();
 var settings = {
   playhead: 0.001,
-  blockX: 40,
-  blockY: 40,
-  blockZ: -22,
-  greenx: 24,
+  blockX: 70,
+  blockY: 12,
+  blockZ: 2,
+  greenx: 17,
   greeny: 26,
-  greenz: 24,
-  targetx: 14,
-  targety: 21,
-  targetz: 28,
+  greenz: 80,
+  targetx: 15,
+  targety: 12,
+  targetz: 2,
   windowx: 14,
   windowy: 21,
   windowz: -28,
@@ -83,8 +83,8 @@ camera.position.set(0, 16.75, 2.25)
 scene.add(target, rectLightTarget);
 
 // SCENE AND LIGHTS
-var rectLight = new THREE.RectAreaLight( 0xffffff, 2,  5, 5 );
-var windowLight = new THREE.RectAreaLight( 0xffffff, settings.windowBright, 35, 25);
+var rectLight = new THREE.RectAreaLight( 0xffffff, 2,  9, 5 );
+var windowLight = new THREE.RectAreaLight( 0x4D5656, settings.windowBright, 35, 25);
 var greenRectLight = new THREE.RectAreaLight( 0x00FF00, settings.greenBright, 35, 35);
 var pinkRectLight = new THREE.RectAreaLight( 0xFFC0CB, settings.pinkBright, 30, 30);
 

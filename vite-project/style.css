@@ -41,7 +41,7 @@ body {
 .two {
   opacity: 1; 
   transform: translate(0px, 0px);
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 10%;
   height: 1em;
   margin-right: 3%;
@@ -51,7 +51,7 @@ body {
 .two-two {
   opacity: 1; 
   transform: translate(0px, 0px);
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 20%;
   height: 1em;
   margin-right: 3%;
@@ -83,8 +83,8 @@ section {
 }
 
 .section-title {
-  border: 2px solid red;
-  margin: 15% 0 30% 0;
+  /* border: 2px solid red; */
+  margin: 10% 0 30% 0;
   padding: 10%;
 }
 
@@ -97,7 +97,7 @@ section {
 }
 
 .section-previous-works {
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   margin: 30% 0 30% 0;
 }
 
@@ -106,8 +106,8 @@ section {
 }
 
 .section-bio {
-  border: 2px solid green;
-  margin: 30% 0 30% 0;
+  /* border: 2px solid green; */
+  margin: 20% 0 20% 0;
 }
 
 .bio {
